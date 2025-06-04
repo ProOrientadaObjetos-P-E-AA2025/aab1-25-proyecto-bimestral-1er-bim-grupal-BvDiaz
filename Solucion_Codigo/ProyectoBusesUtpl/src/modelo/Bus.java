@@ -27,9 +27,9 @@ public class Bus implements Serializable {
 
     @Override
     public String toString() {
-        String resultado = String.format("Bus %s%n", id);
+        String resultado = String.format("Bus %s\n", id);
         for (Parada p : paradas) {
-            resultado = String.format("%s - %s%n", resultado, p);
+            resultado = String.format("%s - %s\n", resultado, p);
         }
         return resultado;
     }

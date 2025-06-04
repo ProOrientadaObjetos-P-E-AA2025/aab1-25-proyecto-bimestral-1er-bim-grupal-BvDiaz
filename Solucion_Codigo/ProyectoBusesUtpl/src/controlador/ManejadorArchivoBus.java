@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class ManejadorArchivoBus {
-    private String archivo = "buses.data";
+    private String bus = "buses.data";
     private ArrayList<Bus> lista;
 
     public ManejadorArchivoBus() {
@@ -13,7 +13,7 @@ public class ManejadorArchivoBus {
     }
 
     public void cargarBuses() {
-        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(archivo))) {
+        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(bus))) {
             lista = (ArrayList<Bus>) entrada.readObject();
         } catch (IOException | ClassNotFoundException e) {
             lista = new ArrayList<>();
@@ -21,7 +21,7 @@ public class ManejadorArchivoBus {
     }
 
     public void guardarBuses() {
-        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(archivo))) {
+        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(bus))) {
             salida.writeObject(lista);
         } catch (IOException e) {
             System.out.println("Error al guardar los buses.");
