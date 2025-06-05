@@ -3,13 +3,12 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Bus implements Serializable {
-
-    private String id;
+public class Rutas implements Serializable {
+    private String idBus;
     private ArrayList<Parada> paradas;
 
-    public Bus(String id) {
-        this.id = id;
+    public Rutas(String idBus) {
+        this.idBus = idBus;
         this.paradas = new ArrayList<>();
     }
 
@@ -17,8 +16,8 @@ public class Bus implements Serializable {
         paradas.add(p);
     }
 
-    public String obtenerId() {
-        return id;
+    public String obtenerIdBus() {
+        return idBus;
     }
 
     public ArrayList<Parada> obtenerParadas() {
@@ -27,9 +26,10 @@ public class Bus implements Serializable {
 
     @Override
     public String toString() {
-        String resultado = String.format("Bus %s\n", id);
-        for (Parada p : paradas) {
-            resultado = String.format("%s - %s\n", resultado, p);
+        String resultado = "Bus: " + idBus + "\nParadas:\n";
+        for (int i = 0; i < paradas.size(); i++) {
+            Parada p = paradas.get(i);
+            resultado += (i + 1) + ". " + p.toString() + "\n";
         }
         return resultado;
     }

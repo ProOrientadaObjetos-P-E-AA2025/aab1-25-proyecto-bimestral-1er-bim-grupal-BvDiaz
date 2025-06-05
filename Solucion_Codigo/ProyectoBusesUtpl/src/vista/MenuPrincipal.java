@@ -1,8 +1,8 @@
 package vista;
 
-import modelo.Bus;
 import modelo.Parada;
-import controlador.ManejadorArchivoBus;
+import modelo.Rutas;
+import controlador.ManejadorArchivoRutas;
 
 import java.util.Scanner;
 
@@ -10,14 +10,14 @@ public class MenuPrincipal {
 
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in);
-        ManejadorArchivoBus manejador = new ManejadorArchivoBus();
+        ManejadorArchivoRutas manejador = new ManejadorArchivoRutas();
 
         boolean salir = false;
 
         while (!salir) {
             System.out.println("=== MENU PRINCIPAL ===");
-            System.out.println("1. Registrar nuevo bus");
-            System.out.println("2. Ver detalles de un bus");
+            System.out.println("1. Registrar nueva ruta");
+            System.out.println("2. Ver detalles de una ruta");
             System.out.println("0. Salir");
             System.out.print("Opcion:\n");
             int opcion = leer.nextInt();
@@ -28,10 +28,10 @@ public class MenuPrincipal {
                     System.out.print("ID del bus:\n");
                     String id = leer.nextLine();
 
-                    if (manejador.buscarBus(id) != null) {
-                        System.out.println("Error: Ya existe un bus con ese ID.");
+                    if (manejador.buscarRutaPorId(id) != null) {
+                        System.out.println("Error: Ya existe una ruta registrada para este bus.");
                     } else {
-                        Bus nuevo = new Bus(id);
+                        Rutas nueva = new Rutas(id);
 
                         System.out.print("Cantidad de paradas:\n");
                         int n = leer.nextInt();
@@ -49,22 +49,22 @@ public class MenuPrincipal {
                             String hora = leer.nextLine();
 
                             Parada p = new Parada(nombre, ubic, dir, hora);
-                            nuevo.agregarParada(p);
+                            nueva.agregarParada(p);
                         }
 
-                        manejador.agregarBus(nuevo);
-                        System.out.println("Bus registrado con exito.");
+                        manejador.agregarRuta(nueva);
+                        System.out.println("Ruta registrada con exito.");
                     }
                     break;
 
                 case 2:
                     System.out.print("ID del bus: ");
                     String busId = leer.nextLine();
-                    Bus buscado = manejador.buscarBus(busId);
-                    if (buscado != null) {
-                        System.out.println(buscado);
+                    Rutas buscada = manejador.buscarRutaPorId(busId);
+                    if (buscada != null) {
+                        System.out.println(buscada);
                     } else {
-                        System.out.println("Bus no encontrado.");
+                        System.out.println("Ruta no encontrada.");
                     }
                     break;
 
@@ -73,7 +73,7 @@ public class MenuPrincipal {
                     break;
 
                 default:
-                    System.out.println("Opción invalida.");
+                    System.out.println("Opcion invalida.");
             }
         }
     }
