@@ -29,7 +29,7 @@ public class Rutas implements Serializable {
         String resultado = "Bus: " + idBus + "\nParadas:\n";
         for (int i = 0; i < paradas.size(); i++) {
             Parada p = paradas.get(i);
-            resultado += (i + 1) + ". " + p.toString() + "\n";
+            resultado = resultado + (i + 1) + ". " + p.toString() + "\n";
         }
         return resultado;
     }
