@@ -16,6 +16,28 @@ public class Rutas implements Serializable {
         paradas.add(p);
     }
 
+    public boolean eliminarParada(int indice) {
+        if (indice >= 0 && indice < paradas.size()) {
+            paradas.remove(indice);
+            return true;
+        }
+        return false;
+    }
+
+    public String obtenerHoraInicioRuta() {
+        if (!paradas.isEmpty()) {
+            return paradas.get(0).getHoraLlegada();
+        }
+        return "N/A";
+    }
+
+    public String obtenerHoraFinRuta() {
+        if (!paradas.isEmpty()) {
+            return paradas.get(paradas.size() - 1).getHoraSalida();
+        }
+        return "N/A";
+    }
+
     public String obtenerIdBus() {
         return idBus;
     }
@@ -31,6 +53,8 @@ public class Rutas implements Serializable {
             Parada p = paradas.get(i);
             resultado = resultado + (i + 1) + ". " + p.toString() + "\n";
         }
+        resultado = resultado + "Hora inicio ruta: " + obtenerHoraInicioRuta() + "\n";
+        resultado = resultado + "Hora fin ruta: " + obtenerHoraFinRuta() + "\n";
         return resultado;
     }
 }
